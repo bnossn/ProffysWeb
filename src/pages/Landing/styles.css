@@ -1,0 +1,171 @@
+#page-landing {
+    width: 100vw; /* Total em largura */
+    height: 100vh; /* Total em altura */
+
+    display: flex; /* para alinha tudo ao centro junto com os param abaixo */ 
+    justify-content: center;
+    align-items: center;
+
+    color: var(--color-text-in-primary); /* Var declarada no global.css */
+    background: var(--color-primary); /* Var declarada no global.css */
+}
+
+/* logo-container é uma div. Mudamos so as img dentro dela */
+.logo-container img { 
+    height: 10rem;
+}
+
+/* hero-image é uma IMG. Nao preciso colocar img após o className */
+.hero-image { 
+    /* Faz a largura da imagem ser a mesma da tela, retirando o scroll */
+    width: 100%; 
+}
+
+/* Aqui mudamos o css da DIV */
+.logo-container {
+    text-align: center;
+    margin-bottom: 3.2rem;
+}
+
+/* Aqui mudamos o h2 da div 'logo-container' */
+.logo-container h2 {
+    font-weight: 500; /* Tira o Negrito */
+    font-size: 2.4rem;
+    /* \/ Muda o espaçamento entre linhas ou entre txt e elementos ao seu redor */
+    line-height: 4.6rem;
+    margin-top: 0.8rem;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    margin: 3.2rem 0;
+}
+
+/* Mudar layout de cada um dos Anchors */
+/* Essas margens vão definir geometria do nosso botão */
+.buttons-container a {
+    width: 30rem;
+    height: 10.4rem;
+    border-radius: 0.8rem;
+    font: 700 2.0rem Archivo; /* fonte retirada do google e declarada no index.html */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none; /* Tira o underline do texto */
+    color: var(--color-button-text);
+
+    /* Fazer com que a transição de cor de fundo do botão leve 0.2s */
+    /* O botão muda de cor com o 'hover' */
+    transition: background-color 0.2s;
+}
+
+
+/* Margem utilizada só no primeiro botão por conta do distanciamento */
+.buttons-container a:first-child {
+    margin-right: 1.6rem; 
+}
+
+.buttons-container a img {
+    width: 4rem; /* Diminui tamanho da imagem dos icones dos botões */
+    margin-right: 2.4rem;
+}
+
+/* Agora acessar cada botão individualmente para mudar sua cor */
+.buttons-container a.study {
+    background: var(--color-primary-lighter);
+}
+
+.buttons-container a.give-classes {
+    background: var(--color-secundary);
+}
+
+/* Mudar a cor do botão quando o mouse passar por cima */
+.buttons-container a.study:hover {
+    background: var(--color-primary-light);
+}
+
+.buttons-container a.give-classes:hover {
+    background: var(--color-secundary-dark);
+}
+
+
+.total-connections {
+    font-size: 1.4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total-connections img {
+    margin-left: 0.8rem;
+}
+
+
+/* Até aqui fizemos o CSS para mobile, agora temos que adapta-lo para desktop */
+/* 1100 é um bom start point. Tem que testar no seu layout */
+/* Utilizamos o ID para setar as configurações porque o ID é sempre mais poderoso do que a classe. */
+/* o page-landing-content até então esta tirando seu .css do .global.css através do nome da classe (container) */
+@media (min-width: 1100px){
+    #page-landing-content {
+        max-width: 1100px;
+
+        display: grid; /* grid unido ao flexbox é muito facil criar layout */
+        /* a primeira linha ocupa 350px. '1fr' faz com que a segunda linha ocupe o espaço que sobrar */
+        grid-template-rows: 350px 1fr;
+
+        /* Criar 3 colunas. 
+        A primeira coluna vai ocupar um espaço 2x maior do que a segunda e terceira. 
+        Ou seja, ela vai ter o tamanho da segunda e terceira somadas (50% da tela)*/
+        grid-template-columns: 2fr 1fr 1fr;
+        
+        /* oq vai ficar em cada coluna e linha? */
+        grid-template-areas: 
+            'logo hero hero'
+            'buttons buttons total'
+        ;
+    }
+}
+
+/* Agora temos que ligar os nomes criados no grid aos componentes usando o 'grid-area' */
+/* Aproveita-se para ajustar outras configurações desses componentes */
+.logo-container {
+    grid-area: logo;
+    align-self: center;
+    text-align: left;
+    margin: 0; /* Tirar a margem que colocamos no Mobile */
+}
+
+.logo-container h2{
+    text-align: initial;
+    font-size: 3.6rem;
+}
+
+.logo-container img {
+    /* usa toda a altura do '.logo-container' */
+    height: 100%;
+}
+
+.hero-image {
+    grid-area: hero;
+    justify-self: end; /* Imagem sempre ficar alinhada para a direita */
+}
+
+.buttons-container {
+    grid-area: buttons;
+    
+    /* Garantir que o botão vai iniciar na esquerda da sua célula */
+    justify-content: flex-start;
+}
+
+.buttons-container a {
+    font-size: 2.4rem;
+}
+
+.total-connections {
+    grid-area: total;
+    justify-self: end;
+}

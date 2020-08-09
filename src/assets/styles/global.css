@@ -1,0 +1,68 @@
+:root{
+    font-size: 60%;
+
+    /* as variaveis abaixo foram definidas para serem consumidas ao longo do css */
+
+    --color-background: #F0F0F7;
+    --color-primary-lighter: #9871F5;
+    --color-primary-light: #916BEA;
+    --color-primary: #8257E5;
+    --color-primary-dark: #774DD6;
+    --color-primary-darker: #6842C2;
+    --color-secundary: #04D361;
+    --color-secundary-dark: #04BF58;
+    --color-title-in-primary: #FFFFFF;
+    --color-text-in-primary: #D4C2FF;
+    --color-text-title: #32264D;
+    --color-text-complement: #9C98A6;
+    --color-text-base: #6A6180;
+    --color-line-in-white: #E6E6F0;
+    --color-input-background: #F8F8FC;
+    --color-button-text: #FFFFFF;
+    --color-box-base: #FFFFFF;
+    --color-box-footer: #FAFAFC;
+}
+
+* { /* definir para todos os elementos */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Para fazer com que padding e tudo mais conte na largura do elemento */
+}
+
+
+
+html, body, #root {
+    height: 100vh; /* Vai fazer com que a pagina ocupe sempre 100% da tela. vh = Viewport Height*/
+}
+
+body {
+    background: var(--color-background); /* estamos usando as variaveis definidas no inicio do arquivo */
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body,
+input,
+button,
+textarea {
+    font: 500 1.6rem Poppins; /* 1.6rem: pega o font -size e adiciona 60%. Utilizado para criar aplicações que se adaptam para todos os tipos de dispositivos. Para mudar o tamanho da fonte, basta mudar o font-size no inicio do arquivo e toda sua estrutura se adaptara automaticamente. */
+    color: var(--color-text-base);
+}
+
+.container {
+    /* Vai ocupar sempre 90% da largura vw = viewport width */
+    width: 90vw; 
+    /* 90% da tela ao limite máximo de 700px */
+    max-width: 700px; 
+}
+
+@media (min-width: 700px){ /*Dispositivos com largura minima de 700px, ou seja, maiores que 700px*/
+    :root {
+        font-size: 62.5%; /* Aumentar fonte. Vai transformar 1rem = 10px (16px (tamanho padrão de fonte. font-size de 100%) * 0.625)*/
+    }
+
+}
